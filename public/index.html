@@ -6,7 +6,7 @@
   </head>
   <body>
     <a-scene>
-			<a-sky src="img/R0010392.JPG" rotation="0 0 0" id="skybox"></a-sky>
+			<a-sky id="skybox"></a-sky>
 			<a-camera id="target" position="0 1.4 0">
 				    <a-entity cursor="fuse: true; fuseTimeout: 3000" 
 											position="0 0 -1" 
@@ -17,27 +17,90 @@
 													 fill="none" from="0.03 0.03 0.03" to="0.001 0.001 0.001"></a-animation>
 						</a-entity>
 			</a-camera>
-
-			<a-circle
-				color="#666"
-				radius="0.5"
-				position="-1 3 -5"
-				rotation="0 0 0"
-				id="open-btn"
-				>
-				<a-text
-					color="#FFF"
-					value="Open"
-					align="center" ></a-text>
-			</a-circle>
 		</a-scene>
 
-		<script type="text/javascript">  
-			var clickElement = document.getElementById("open-btn");
-			var skyBox = document.getElementById("skybox");
-			clickElement.addEventListener("click", function() {
-			  skyBox.setAttribute("src","img/R0010393.JPG");
-			},false);
+		<script type="text/javascript">
+   	  var scenes = [{
+					'scene_id': '001',
+					'spheres': [
+							{'rad':0.75, 'next_id':'002'},
+							{'rad':0.92, 'next_id':'003'}
+					],
+					'img_name':'img/001.JPG'
+ 			},
+										{
+					'scene_id': '002',
+					'spheres': [
+							{'rad':0.75, 'next_id':'001'},
+							{'rad':0.92, 'next_id':'003'}
+					],
+					'img_name':'img/002.JPG'
+										},
+										{
+					'scene_id': '003',
+					'spheres': [
+							{'rad':0.5, 'next_id':'001'},
+					],
+					'img_name':'img/003.JPG'
+										}
+									 ];
+
+      var global_spheres = [];
+      createScene (scenes[0]);
+					
+      function createScene (scene) {
+		      // Change skybox
+					var skyBox = document.getElementById ('skybox');					
+					skyBox.setAttribute ('src',scene['img_name']);
+
+					// Remove existing Spheres
+					deleteAllSpheres ();
+					
+					// Add Spheres
+					var spheres = scene['spheres'];
+					var sphere_array = [];
+					for (var i=0; i < spheres.length; i++) {
+							var sphere = createSphere(spheres[i]['rad'], spheres[i]['next_id']);
+							global_spheres.push(sphere);
+					}
+  	      for (var i=0; i < global_spheres.length; i++) {
+							console.log(i);
+ 							global_spheres[i].addEventListener('click', function(){
+									console.log(i);
+//	  							alert(global_spheres[i-1].getAttribute('next_id'));
+									createScene(scenes[Number(global_spheres[i].getAttribute('next_id'))-1]);
+									console.log(i);
+							},false);
+					}
+			}	
+
+      function createSphere (rad, next_id) {
+					rad = ((rad -0.75) * 2 + 3/2) * Math.PI;
+					
+					var scene = document.querySelector('a-scene');
+					var sphere = document.createElement('a-sphere');
+					var position_str = String(Math.cos(rad)*5) + ' 3 ' + String(Math.sin(rad)*5);
+
+					sphere.setAttribute('color', '#FF9500');
+					sphere.setAttribute('radius', '0.5');
+					sphere.setAttribute('next_id', next_id);
+					sphere.setAttribute('class', 'open_sphere');
+					sphere.setAttribute('position', position_str);
+
+//					sphere.addEventListener('click', createScene(scenes[Number(next_id)]), false);
+					
+					scene.appendChild(sphere);
+
+					return sphere;
+			}
+
+      function deleteAllSpheres () {
+					var spheres = document.querySelectorAll('a-sphere');
+					for (var i=0; i < spheres.length; i++) {
+							spheres[i].parentNode.removeChild(spheres[i]);
+					}
+					global_spheres = [];
+			}
 		</script>
 
   </body>
