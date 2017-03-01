@@ -3,8 +3,11 @@
   <head>
     <title>My first VR site</title>
 		<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
-		<script>
-		</script>
+		<link rel="manifest" href="/manifest.json">  <!-- Add to home screen for Safari on iOS -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Weather PWA">
+		<link rel="apple-touch-icon" href="images/icons/icon-152x152.png">a
   </head>
   <body>
     <a-scene>
@@ -59,10 +62,17 @@
 							scene.addEventListener('loaded', function () {
 									setTimeout(function () {
 											scene.enterVR();
-									}, 1000);
+									}, 10);
 							});
 					};
 			})();
+
+      if ('serviceWorker' in navigator) {
+					navigator.serviceWorker
+							.register('./sw.js')
+							.then(function() { console.log('Service Worker Registered'); });
+			}
+
       function createScene (scene) {
 		      // Change skybox
 					var skyBox = document.getElementById('skybox');
@@ -74,7 +84,6 @@
 							createSphere(spheres[i]['rad'], spheres[i]['next_id']);
 					}
 			}	
-
       function createSphere (rad, next_id) {
 					rad = ((rad -0.75) * 2 + 3/2) * Math.PI;
 					
@@ -102,7 +111,6 @@
 					
 					scene.appendChild(sphere);
 			}
-
       function toggleSphere () {
 					var spheres = document.querySelectorAll('a-sphere');
 					for (var i=0; i < spheres.length; i++) {
