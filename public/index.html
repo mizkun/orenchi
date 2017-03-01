@@ -3,6 +3,8 @@
   <head>
     <title>My first VR site</title>
 		<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+		<script>
+		</script>
   </head>
   <body>
     <a-scene>
@@ -16,7 +18,7 @@
 							<a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" 
 													 fill="none" from="0.03 0.03 0.03" to="0.001 0.001 0.001"></a-animation>
 						</a-entity>
-			</a-camera>
+       </a-camera>
 		</a-scene>
 
 		<script type="text/javascript">
@@ -43,15 +45,27 @@
 					{'scene_id':13,'spheres':[{'rad':0.08, 'next_id':'009'},{'rad':0.89, 'next_id':'014'}],'img_name':'img/013.JPG'}, // Bedroom 13
 					{'scene_id':14,'spheres':[{'rad':0.11, 'next_id':'013'}],'img_name':'img/014.JPG'}, // Walk in closet 14
 					{'scene_id':15,'spheres':[{'rad':0.71, 'next_id':'002'}],'img_name':'img/015.JPG'}, // Kitchen 15
-					
 					{'scene_id':100,'spheres':[{'rad':0.75, 'next_id':'000'},{'rad':0.92, 'next_id':'002'}],'img_name':'img/100.JPG'},
 			];
 
       createScene (scenes[Number(room)]);
-
+      createWarpSphere ('#00ff00');
+　　　　
+      (function () {
+					var scene = document.querySelector('a-scene');
+					if (scene.hasLoaded) {
+							scene.enterVR();
+					} else {
+							scene.addEventListener('loaded', function () {
+									setTimeout(function () {
+											scene.enterVR();
+									}, 1000);
+							});
+					};
+			})();
       function createScene (scene) {
 		      // Change skybox
-					var skyBox = document.getElementById ('skybox');					
+					var skyBox = document.getElementById('skybox');
 					skyBox.setAttribute ('src',scene['img_name']);
 
 					// Add Spheres
@@ -77,16 +91,29 @@
 
 					scene.appendChild(sphere);
 			}
+      function createWarpSphere (color) {
+					var scene = document.querySelector('a-scene');
+					var sphere = document.createElement('a-sphere');
+					
+					sphere.setAttribute('color', color);
+					sphere.setAttribute('radius', '0.5');
+					sphere.setAttribute('position', '0 0 0');
+					sphere.setAttribute('onclick','toggleSphere();');
+					
+					scene.appendChild(sphere);
+			}
 
-      /*
-      function deleteAllSpheres () {
+      function toggleSphere () {
 					var spheres = document.querySelectorAll('a-sphere');
 					for (var i=0; i < spheres.length; i++) {
-							spheres[i].parentNode.removeChild(spheres[i]);
+							if (spheres[i].getAttribute('visible') == true) {
+									spheres[i].setAttribute('visible',false);
+							} else {
+									spheres[i].setAttribute('visible',true);
+							}
 					}
-					global_spheres = [];
+  				createWarpSphere('#00ff00');
 			}
-      */
 		</script>
   </body>
 </html>
