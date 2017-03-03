@@ -25,7 +25,7 @@
 		</a-scene>
 
 <script type="text/javascript">
-var room = 'all';
+var room = '2';
 var match = location.search.match(/room=(.*?)(&|$)/);
 if(match) {
 		room = decodeURIComponent(match[1]);
@@ -113,6 +113,9 @@ function moveScene (next_id) {
 		}
 }
 
+navigator.serviceWorker && navigator.serviceWorker.register('/sw.js').then(function(registration) {
+  console.log('Excellent, registered with scope: ', registration.scope);
+});
 
       /*
       createScene (scenes[Number(room)]);
@@ -131,11 +134,6 @@ function moveScene (next_id) {
 					};
 			})();
 
-      if ('serviceWorker' in navigator) {
-					navigator.serviceWorker
-							.register('./sw.js')
-							.then(function() { console.log('Service Worker Registered'); });
-			}
 
       function createScene (scene) {
 		      // Change skybox

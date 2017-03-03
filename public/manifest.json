@@ -1,6 +1,6 @@
 {
   "name": "Orenchi",
-  "short_name": "orenchi",
+	"short_name": "orenchi",
   "icons": [{
     "src": "img/icon/icon-128x128.png",
       "sizes": "128x128",
@@ -22,7 +22,7 @@
       "sizes": "256x256",
       "type": "image/png"
     }],
-  "start_url": "/index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#3E4EB8",
   "theme_color": "#2F3BA2"
