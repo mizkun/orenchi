@@ -32,23 +32,23 @@ if(match) {
 }
 
 var scenes = [
-		{'scene_id':0,'spheres':[{'rad':0.725, 'next_id':'001'},{'rad':0.89, 'next_id':'002'}],'img_name':'img/000.JPG'}, // Shosai 0
-		{'scene_id':1,'spheres':[{'rad':0.725, 'next_id':'000'},{'rad':0.89, 'next_id':'002'}],'img_name':'img/001.JPG'}, // Shosai open 1
-		{'scene_id':2,'spheres':[{'rad':0.32, 'next_id':'005'},{'rad':0.51, 'next_id':'000'},{'rad':0.71, 'next_id':'003'},{'rad':0.77, 'next_id':'007'},{'rad':0.83, 'next_id':'015'},],'img_name':'img/002.JPG'}, // Living Room 2
-		{'scene_id':3,'spheres':[{'rad':0.5, 'next_id':'002'},{'rad':0.68, 'next_id':'004'}],'img_name':'img/003.JPG'}, // Child room 3
-		{'scene_id':4,'spheres':[{'rad':0.5, 'next_id':'002'},{'rad':0.68, 'next_id':'003'}],'img_name':'img/004.JPG'}, // Child room open 4
-		{'scene_id':5,'spheres':[{'rad':0.22, 'next_id':'006'},{'rad':0.52, 'next_id':'002'}],'img_name':'img/005.JPG'}, // Terrace 5
-		{'scene_id':6,'spheres':[{'rad':0.512, 'next_id':'005'}],'img_name':'img/006.JPG'}, // Terrace 2 6
-		{'scene_id':7,'spheres':[{'rad':0.3, 'next_id':'002'},{'rad':0.73, 'next_id':'009'}],'img_name':'img/007.JPG'}, // Entrance 7
-		{'scene_id':8,'spheres':[{'rad':0.725, 'next_id':'009'}],'img_name':'img/008.JPG'}, // Toilet 8
-		{'scene_id':9,'spheres':[{'rad':0.195, 'next_id':'013'},{'rad':0.243, 'next_id':'011'},{'rad':0.47, 'next_id':'010'},{'rad':0.775, 'next_id':'008'},{'rad':0.87, 'next_id':'002'},],'img_name':'img/009.JPG'}, // Corridor 9
-		{'scene_id':10,'spheres':[{'rad':0.195, 'next_id':'013'},{'rad':0.243, 'next_id':'011'},{'rad':0.47, 'next_id':'009'},{'rad':0.775, 'next_id':'008'},{'rad':0.87, 'next_id':'002'},],'img_name':'img/010.JPG'}, // Corridor Open 10									
-		{'scene_id':11,'spheres':[{'rad':0.1, 'next_id':'012'},{'rad':0.32, 'next_id':'009'}],'img_name':'img/011.JPG'}, // Washroom 11
-		{'scene_id':12,'spheres':[{'rad':0.1, 'next_id':'011'}],'img_name':'img/012.JPG'}, // Bathroom 12
-		{'scene_id':13,'spheres':[{'rad':0.08, 'next_id':'009'},{'rad':0.89, 'next_id':'014'}],'img_name':'img/013.JPG'}, // Bedroom 13
-		{'scene_id':14,'spheres':[{'rad':0.11, 'next_id':'013'}],'img_name':'img/014.JPG'}, // Walk in closet 14
-		{'scene_id':15,'spheres':[{'rad':0.71, 'next_id':'002'}],'img_name':'img/015.JPG'}, // Kitchen 15
-		{'scene_id':100,'spheres':[{'rad':0.75, 'next_id':'000'},{'rad':0.92, 'next_id':'002'}],'img_name':'img/100.JPG'},
+		{'scene_id':0,'spheres':[{'rad':0.725, 'next_id':1},{'rad':0.89, 'next_id':2}],'img_name':'img/000.JPG'}, // Shosai 0
+		{'scene_id':1,'spheres':[{'rad':0.725, 'next_id':0},{'rad':0.89, 'next_id':2}],'img_name':'img/001.JPG'}, // Shosai open 1
+		{'scene_id':2,'spheres':[{'rad':0.32, 'next_id':5},{'rad':0.51, 'next_id':0},{'rad':0.71, 'next_id':3},{'rad':0.77, 'next_id':7},{'rad':0.83, 'next_id':15},],'img_name':'img/002.JPG'}, // Living Room 2
+		{'scene_id':3,'spheres':[{'rad':0.5, 'next_id':2},{'rad':0.68, 'next_id':4}],'img_name':'img/003.JPG'}, // Child room 3
+		{'scene_id':4,'spheres':[{'rad':0.5, 'next_id':2},{'rad':0.68, 'next_id':3}],'img_name':'img/004.JPG'}, // Child room open 4
+		{'scene_id':5,'spheres':[{'rad':0.22, 'next_id':6},{'rad':0.52, 'next_id':2}],'img_name':'img/005.JPG'}, // Terrace 5
+		{'scene_id':6,'spheres':[{'rad':0.512, 'next_id':5}],'img_name':'img/006.JPG'}, // Terrace 2 6
+		{'scene_id':7,'spheres':[{'rad':0.3, 'next_id':2},{'rad':0.73, 'next_id':9}],'img_name':'img/007.JPG'}, // Entrance 7
+		{'scene_id':8,'spheres':[{'rad':0.725, 'next_id':9}],'img_name':'img/008.JPG'}, // Toilet 8
+		{'scene_id':9,'spheres':[{'rad':0.195, 'next_id':13},{'rad':0.243, 'next_id':11},{'rad':0.47, 'next_id':10},{'rad':0.775, 'next_id':8},{'rad':0.87, 'next_id':2},],'img_name':'img/009.JPG'}, // Corridor 9
+		{'scene_id':10,'spheres':[{'rad':0.195, 'next_id':13},{'rad':0.243, 'next_id':11},{'rad':0.47, 'next_id':9},{'rad':0.775, 'next_id':8},{'rad':0.87, 'next_id':2},],'img_name':'img/010.JPG'}, // Corridor Open 10									
+		{'scene_id':11,'spheres':[{'rad':0.1, 'next_id':12},{'rad':0.32, 'next_id':'009'}],'img_name':'img/011.JPG'}, // Washroom 11
+		{'scene_id':12,'spheres':[{'rad':0.1, 'next_id':11}],'img_name':'img/012.JPG'}, // Bathroom 12
+		{'scene_id':13,'spheres':[{'rad':0.08, 'next_id':9},{'rad':0.89, 'next_id':14}],'img_name':'img/013.JPG'}, // Bedroom 13
+		{'scene_id':14,'spheres':[{'rad':0.11, 'next_id':13}],'img_name':'img/014.JPG'}, // Walk in closet 14
+		{'scene_id':15,'spheres':[{'rad':0.71, 'next_id':2}],'img_name':'img/015.JPG'}, // Kitchen 15
+		{'scene_id':100,'spheres':[{'rad':0.75, 'next_id':0},{'rad':0.92, 'next_id':2}],'img_name':'img/100.JPG'},
 ];
 
 for (var i=0; i < scenes.length; i++) {
@@ -97,18 +97,18 @@ function moveScene (next_id) {
 		// Hide all skybox and spheres
 		var spheres = document.querySelectorAll('a-sphere');
 		var skys = document.querySelectorAll('a-sky');
-		for (var i=0; i < spheres.length; i++) {
-				if (spheres[i].getAttribute('current_id') == next_id) {
-						spheres[i].setAttribute('visible', true);
+		for (var j=0; j < spheres.length; j++) {
+				if (Number(spheres[j].getAttribute('current_id')) == next_id) {
+						spheres[j].setAttribute('visible', true);
 				} else {
-						spheres[i].setAttribute('visible', false);						
+						spheres[j].setAttribute('visible', false);						
 				}
 		}
-		for (var i=0; i < skys.length; i++) {
-				if (skys[i].getAttribute('id') == next_id) {
-						skys[i].setAttribute('visible', true);
+		for (var k=0; k < skys.length; k++) {
+				if (Number(skys[k].getAttribute('id')) == next_id) {
+						skys[k].setAttribute('visible', true);
 				} else {
-						skys[i].setAttribute('visible', false);						
+						skys[k].setAttribute('visible', false);						
 				}
 		}
 }
