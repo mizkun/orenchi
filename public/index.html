@@ -12,7 +12,6 @@
 </head>
   <body>
     <a-scene>
-			<a-sky id="skybox"></a-sky>
 			<a-camera id="target" position="0 1.4 0">
 				    <a-entity cursor="fuse: true; fuseTimeout: 3000" 
 											position="0 0 -1" 
@@ -25,33 +24,97 @@
        </a-camera>
 		</a-scene>
 
-		<script type="text/javascript">
-			var room = 'all';
-			var match = location.search.match(/room=(.*?)(&|$)/);
-			if(match) {
-			    room = decodeURIComponent(match[1]);
-			}
-			
-      var scenes = [
-					{'scene_id':0,'spheres':[{'rad':0.725, 'next_id':'001'},{'rad':0.89, 'next_id':'002'}],'img_name':'img/000.JPG'}, // Shosai 0
-					{'scene_id':1,'spheres':[{'rad':0.725, 'next_id':'000'},{'rad':0.89, 'next_id':'002'}],'img_name':'img/001.JPG'}, // Shosai open 1
-					{'scene_id':2,'spheres':[{'rad':0.32, 'next_id':'005'},{'rad':0.51, 'next_id':'000'},{'rad':0.71, 'next_id':'003'},{'rad':0.77, 'next_id':'007'},{'rad':0.83, 'next_id':'015'},],'img_name':'img/002.JPG'}, // Living Room 2
-					{'scene_id':3,'spheres':[{'rad':0.5, 'next_id':'002'},{'rad':0.68, 'next_id':'004'}],'img_name':'img/003.JPG'}, // Child room 3
-					{'scene_id':4,'spheres':[{'rad':0.5, 'next_id':'002'},{'rad':0.68, 'next_id':'003'}],'img_name':'img/004.JPG'}, // Child room open 4
-					{'scene_id':5,'spheres':[{'rad':0.22, 'next_id':'006'},{'rad':0.52, 'next_id':'002'}],'img_name':'img/005.JPG'}, // Terrace 5
-					{'scene_id':6,'spheres':[{'rad':0.512, 'next_id':'005'}],'img_name':'img/006.JPG'}, // Terrace 2 6
-					{'scene_id':7,'spheres':[{'rad':0.3, 'next_id':'002'},{'rad':0.73, 'next_id':'009'}],'img_name':'img/007.JPG'}, // Entrance 7
-					{'scene_id':8,'spheres':[{'rad':0.725, 'next_id':'009'}],'img_name':'img/008.JPG'}, // Toilet 8
-					{'scene_id':9,'spheres':[{'rad':0.195, 'next_id':'013'},{'rad':0.243, 'next_id':'011'},{'rad':0.47, 'next_id':'010'},{'rad':0.775, 'next_id':'008'},{'rad':0.87, 'next_id':'002'},],'img_name':'img/009.JPG'}, // Corridor 9
-					{'scene_id':10,'spheres':[{'rad':0.195, 'next_id':'013'},{'rad':0.243, 'next_id':'011'},{'rad':0.47, 'next_id':'009'},{'rad':0.775, 'next_id':'008'},{'rad':0.87, 'next_id':'002'},],'img_name':'img/010.JPG'}, // Corridor Open 10									
-					{'scene_id':11,'spheres':[{'rad':0.1, 'next_id':'012'},{'rad':0.32, 'next_id':'009'}],'img_name':'img/011.JPG'}, // Washroom 11
-					{'scene_id':12,'spheres':[{'rad':0.1, 'next_id':'011'}],'img_name':'img/012.JPG'}, // Bathroom 12
-					{'scene_id':13,'spheres':[{'rad':0.08, 'next_id':'009'},{'rad':0.89, 'next_id':'014'}],'img_name':'img/013.JPG'}, // Bedroom 13
-					{'scene_id':14,'spheres':[{'rad':0.11, 'next_id':'013'}],'img_name':'img/014.JPG'}, // Walk in closet 14
-					{'scene_id':15,'spheres':[{'rad':0.71, 'next_id':'002'}],'img_name':'img/015.JPG'}, // Kitchen 15
-					{'scene_id':100,'spheres':[{'rad':0.75, 'next_id':'000'},{'rad':0.92, 'next_id':'002'}],'img_name':'img/100.JPG'},
-			];
+<script type="text/javascript">
+var room = 'all';
+var match = location.search.match(/room=(.*?)(&|$)/);
+if(match) {
+		room = decodeURIComponent(match[1]);
+}
 
+var scenes = [
+		{'scene_id':0,'spheres':[{'rad':0.725, 'next_id':'001'},{'rad':0.89, 'next_id':'002'}],'img_name':'img/000.JPG'}, // Shosai 0
+		{'scene_id':1,'spheres':[{'rad':0.725, 'next_id':'000'},{'rad':0.89, 'next_id':'002'}],'img_name':'img/001.JPG'}, // Shosai open 1
+		{'scene_id':2,'spheres':[{'rad':0.32, 'next_id':'005'},{'rad':0.51, 'next_id':'000'},{'rad':0.71, 'next_id':'003'},{'rad':0.77, 'next_id':'007'},{'rad':0.83, 'next_id':'015'},],'img_name':'img/002.JPG'}, // Living Room 2
+		{'scene_id':3,'spheres':[{'rad':0.5, 'next_id':'002'},{'rad':0.68, 'next_id':'004'}],'img_name':'img/003.JPG'}, // Child room 3
+		{'scene_id':4,'spheres':[{'rad':0.5, 'next_id':'002'},{'rad':0.68, 'next_id':'003'}],'img_name':'img/004.JPG'}, // Child room open 4
+		{'scene_id':5,'spheres':[{'rad':0.22, 'next_id':'006'},{'rad':0.52, 'next_id':'002'}],'img_name':'img/005.JPG'}, // Terrace 5
+		{'scene_id':6,'spheres':[{'rad':0.512, 'next_id':'005'}],'img_name':'img/006.JPG'}, // Terrace 2 6
+		{'scene_id':7,'spheres':[{'rad':0.3, 'next_id':'002'},{'rad':0.73, 'next_id':'009'}],'img_name':'img/007.JPG'}, // Entrance 7
+		{'scene_id':8,'spheres':[{'rad':0.725, 'next_id':'009'}],'img_name':'img/008.JPG'}, // Toilet 8
+		{'scene_id':9,'spheres':[{'rad':0.195, 'next_id':'013'},{'rad':0.243, 'next_id':'011'},{'rad':0.47, 'next_id':'010'},{'rad':0.775, 'next_id':'008'},{'rad':0.87, 'next_id':'002'},],'img_name':'img/009.JPG'}, // Corridor 9
+		{'scene_id':10,'spheres':[{'rad':0.195, 'next_id':'013'},{'rad':0.243, 'next_id':'011'},{'rad':0.47, 'next_id':'009'},{'rad':0.775, 'next_id':'008'},{'rad':0.87, 'next_id':'002'},],'img_name':'img/010.JPG'}, // Corridor Open 10									
+		{'scene_id':11,'spheres':[{'rad':0.1, 'next_id':'012'},{'rad':0.32, 'next_id':'009'}],'img_name':'img/011.JPG'}, // Washroom 11
+		{'scene_id':12,'spheres':[{'rad':0.1, 'next_id':'011'}],'img_name':'img/012.JPG'}, // Bathroom 12
+		{'scene_id':13,'spheres':[{'rad':0.08, 'next_id':'009'},{'rad':0.89, 'next_id':'014'}],'img_name':'img/013.JPG'}, // Bedroom 13
+		{'scene_id':14,'spheres':[{'rad':0.11, 'next_id':'013'}],'img_name':'img/014.JPG'}, // Walk in closet 14
+		{'scene_id':15,'spheres':[{'rad':0.71, 'next_id':'002'}],'img_name':'img/015.JPG'}, // Kitchen 15
+		{'scene_id':100,'spheres':[{'rad':0.75, 'next_id':'000'},{'rad':0.92, 'next_id':'002'}],'img_name':'img/100.JPG'},
+];
+
+for (var i=0; i < scenes.length; i++) {
+		if (i == Number(room)) {
+				createSkybox (scenes[i]['img_name'], i, true);
+				createSpheres (scenes[i]['spheres'], i, true);
+		} else {
+				createSkybox (scenes[i]['img_name'], i, false);
+				createSpheres (scenes[i]['spheres'], i, false);
+		}
+}
+
+function createSpheres (spheres, current_id, is_visible) {
+		var scene = document.querySelector('a-scene');
+
+		for (var i=0; i < spheres.length ;i++) {
+				var rad = spheres[i]['rad'];
+				rad = ((rad -0.75) * 2 + 3/2) * Math.PI;
+				var next_id = spheres[i]['next_id'];
+				var sphere = document.createElement('a-sphere');
+				var position_str = String(Math.cos(rad)*7) + ' 3 ' + String(Math.sin(rad)*5);
+
+				sphere.setAttribute('color', '#666666');
+				sphere.setAttribute('radius', '0.5');
+				sphere.setAttribute('next_id', next_id);
+				sphere.setAttribute('current_id', current_id);
+				sphere.setAttribute('position', position_str);
+				sphere.setAttribute('visible', is_visible);
+				sphere.setAttribute('onclick','moveScene('+String(next_id)+');');
+
+				scene.appendChild(sphere);
+		}
+}
+
+function createSkybox (img_name, id, is_visible) {
+		var scene = document.querySelector('a-scene');
+		var sky = document.createElement('a-sky');
+					
+		sky.setAttribute('src', img_name);
+		sky.setAttribute('visible',is_visible);
+		sky.setAttribute('id', id);
+		scene.appendChild(sky);
+}
+
+function moveScene (next_id) {
+		// Hide all skybox and spheres
+		var spheres = document.querySelectorAll('a-sphere');
+		var skys = document.querySelectorAll('a-sky');
+		for (var i=0; i < spheres.length; i++) {
+				if (spheres[i].getAttribute('current_id') == next_id) {
+						spheres[i].setAttribute('visible', true);
+				} else {
+						spheres[i].setAttribute('visible', false);						
+				}
+		}
+		for (var i=0; i < skys.length; i++) {
+				if (skys[i].getAttribute('id') == next_id) {
+						skys[i].setAttribute('visible', true);
+				} else {
+						skys[i].setAttribute('visible', false);						
+				}
+		}
+}
+
+
+      /*
       createScene (scenes[Number(room)]);
       createWarpSphere ('#00ff00');
 　　　　
@@ -85,22 +148,6 @@
 							createSphere(spheres[i]['rad'], spheres[i]['next_id']);
 					}
 			}	
-      function createSphere (rad, next_id) {
-					rad = ((rad -0.75) * 2 + 3/2) * Math.PI;
-					
-					var scene = document.querySelector('a-scene');
-					var sphere = document.createElement('a-sphere');
-					var position_str = String(Math.cos(rad)*7) + ' 3 ' + String(Math.sin(rad)*5);
-
-					sphere.setAttribute('color', '#666666');
-					sphere.setAttribute('radius', '0.5');
-					sphere.setAttribute('next_id', next_id);
-					sphere.setAttribute('class', 'open_sphere');
-					sphere.setAttribute('position', position_str);
-					sphere.setAttribute('onclick','location.href=\'?room='+String(next_id)+'\';');
-
-					scene.appendChild(sphere);
-			}
       function createWarpSphere (color) {
 					var scene = document.querySelector('a-scene');
 					var sphere = document.createElement('a-sphere');
@@ -122,7 +169,7 @@
 							}
 					}
   				createWarpSphere('#00ff00');
-			}
+			}*/
 		</script>
   </body>
 </html>
