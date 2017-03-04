@@ -1,7 +1,8 @@
-var cacheName = 'orenchi-v005';
+var cacheName = 'orenchi-v006';
 var filesToCache = [
   '/',
 	'/index.html',
+	'/top.html',
 	'/manifest.json',
 	'/aframe.min.js',
   '/img/001.JPG',
