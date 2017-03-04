@@ -1,4 +1,4 @@
-var cacheName = 'orenchi-v006';
+var cacheName = 'orenchi-v007';
 var filesToCache = [
   '/',
 	'/index.html',
@@ -19,7 +19,22 @@ var filesToCache = [
   '/img/012.JPG',
   '/img/013.JPG',		
   '/img/014.JPG',
-  '/img/015.JPG'
+	'/img/015.JPG',
+  '/img/smallrooms/001.JPG',
+  '/img/smallrooms/002.JPG',		
+  '/img/smallrooms/003.JPG',
+  '/img/smallrooms/004.JPG',		
+  '/img/smallrooms/005.JPG',
+  '/img/smallrooms/006.JPG',		
+  '/img/smallrooms/007.JPG',
+  '/img/smallrooms/008.JPG',		
+  '/img/smallrooms/009.JPG',
+  '/img/smallrooms/010.JPG',		
+  '/img/smallrooms/011.JPG',		
+  '/img/smallrooms/012.JPG',
+  '/img/smallrooms/013.JPG',		
+  '/img/smallrooms/014.JPG',
+  '/img/smallrooms/015.JPG'
 ];
 
 self.addEventListener('install', function(e) {
