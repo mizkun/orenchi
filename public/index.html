@@ -28,7 +28,7 @@
 				radius="0.5"
 				position="0 6 0"
 				rotation="90 0 0"
-				id=""
+				onclick="location.href='/top.html'"
 				>
 				<a-text
 					color="#FFF"
@@ -40,11 +40,25 @@
 				radius="0.5"
 				position="0 -1 0"
 				rotation="270 0 0"
-				id="open-btn"
+        id="hide-btn"
+				visible="true"
 				>
 				<a-text
 					color="#FFF"
 					value="Hide"
+					align="center" ></a-text>
+			</a-circle>
+			<a-circle
+				color="#666"
+				radius="0.5"
+				position="0 -1 0"
+				rotation="270 0 0"
+        id="show-btn"
+				visible="false"
+				>
+    		<a-text
+					color="#FFF"
+					value="Show"
 					align="center" ></a-text>
 			</a-circle>
 
@@ -53,6 +67,7 @@
 		<script type="text/javascript">
 var room = '2';
 var match = location.search.match(/room=(.*?)(&|$)/);
+var global_current_id;
 if(match) {
 		room = decodeURIComponent(match[1]);
 }
@@ -89,7 +104,8 @@ for (var i=0; i < scenes.length; i++) {
 
 function createSpheres (spheres, current_id, is_visible) {
 		var scene = document.querySelector('a-scene');
-
+		global_current_id = current_id;
+		
 		for (var i=0; i < spheres.length ;i++) {
 				var rad = spheres[i]['rad'];
 				rad = ((rad -0.75) * 2 + 3/2) * Math.PI;
@@ -112,7 +128,8 @@ function createSpheres (spheres, current_id, is_visible) {
 function createSkybox (img_name, id, is_visible) {
 		var scene = document.querySelector('a-scene');
 		var sky = document.createElement('a-sky');
-					
+		global_current_id = id;
+		
 		sky.setAttribute('src', img_name);
 		sky.setAttribute('visible',is_visible);
 		sky.setAttribute('id', id);
@@ -120,6 +137,7 @@ function createSkybox (img_name, id, is_visible) {
 }
 
 function moveScene (next_id) {
+		global_current_id = next_id;
 		// Hide all skybox and spheres
 		var spheres = document.querySelectorAll('a-sphere');
 		var skys = document.querySelectorAll('a-sky');
@@ -138,6 +156,32 @@ function moveScene (next_id) {
 				}
 		}
 }
+
+var showBtn = document.getElementById("show-btn");
+var hideBtn = document.getElementById("hide-btn");
+
+showBtn.addEventListener("click", function() {
+		var spheres = document.querySelectorAll('a-sphere');
+		for (var j=0; j < spheres.length; j++) {
+				if (Number(spheres[j].getAttribute('current_id')) == global_current_id) {
+						spheres[j].setAttribute('visible', true);
+				} else {
+						spheres[j].setAttribute('visible', false);						
+				}
+		}
+		showBtn.setAttribute('visible',false);
+		hideBtn.setAttribute('visible',true);		
+},false);
+
+hideBtn.addEventListener("click", function() {
+		var spheres = document.querySelectorAll('a-sphere');
+		for (var j=0; j < spheres.length; j++) {
+				spheres[j].setAttribute('visible', false);
+		}
+		showBtn.setAttribute('visible',true);
+		hideBtn.setAttribute('visible',false);		
+},false);
+
 
 navigator.serviceWorker && navigator.serviceWorker.register('/sw.js').then(function(registration) {
   console.log('Excellent, registered with scope: ', registration.scope);
